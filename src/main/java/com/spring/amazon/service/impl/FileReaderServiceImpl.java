@@ -13,9 +13,9 @@ public class FileReaderServiceImpl implements FileReaderService {
     @Override
     public List<String> read(String path) {
         List<String> result = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            while (br.ready()) {
-                result.add(br.readLine());
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
+            while (bufferedReader.ready()) {
+                result.add(bufferedReader.readLine());
             }
         } catch (IOException e) {
             throw new RuntimeException("Couldn't read file " + path, e);
