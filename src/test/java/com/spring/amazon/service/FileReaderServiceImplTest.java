@@ -1,6 +1,5 @@
-package com.spring.amazon.service.impl;
+package com.spring.amazon.service;
 
-import com.spring.amazon.service.FileReaderService;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,21 +10,21 @@ public class FileReaderServiceImplTest {
     private final FileReaderService reader = new FileReaderServiceImpl();
 
     @Test
-    public void read_Ok() {
+    public void readOk() {
         List<String> expected = List.of("Parse file");
         List<String> actual = reader.read(FILE);
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void readEmpty_Ok() {
+    public void readEmptyOk() {
         List<String> expected = List.of();
         List<String> actual = reader.read(EMPTY_FILE);
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void read_invalidPath() {
+    public void readInvalidPath() {
         Assert.assertThrows(RuntimeException.class, () -> reader.read(""));
     }
 }
