@@ -7,23 +7,33 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReviewDtoParser implements CsvParser<ReviewDto> {
+    private static final int ID = 0;
+    private static final int PRODUCT_ID = 1;
+    private static final int USER_ID = 2;
+    private static final int PROFILE_NAME = 3;
+    private static final int NUMERATOR = 4;
+    private static final int DENOMINATOR = 5;
+    private static final int SCORE = 6;
+    private static final int TIME = 7;
+    private static final int SUMMARY = 8;
+    private static final int TEXT = 9;
+    private CSVParser csvParser = new CSVParser();
 
     @Override
     public ReviewDto parse(String line) {
         ReviewDto reviewDto = new ReviewDto();
-        CSVParser csvParser = new CSVParser();
         try {
             String[] parsedLine = csvParser.parseLine(line);
-            reviewDto.setId(Integer.parseInt(parsedLine[0].trim()));
-            reviewDto.setProductId(parsedLine[1].trim());
-            reviewDto.setUserId(parsedLine[2].trim());
-            reviewDto.setProfileName(parsedLine[3].trim());
-            reviewDto.setHelpfulnessNumerator(Integer.parseInt(parsedLine[4].trim()));
-            reviewDto.setHelpfulnessDenominator(Integer.parseInt(parsedLine[5].trim()));
-            reviewDto.setScore(Integer.parseInt(parsedLine[6].trim()));
-            reviewDto.setTime(Integer.parseInt(parsedLine[7].trim()));
-            reviewDto.setSummary(parsedLine[8].trim());
-            reviewDto.setText(parsedLine[9].trim());
+            reviewDto.setId(Integer.parseInt(parsedLine[ID].trim()));
+            reviewDto.setProductId(parsedLine[PRODUCT_ID].trim());
+            reviewDto.setUserId(parsedLine[USER_ID].trim());
+            reviewDto.setProfileName(parsedLine[PROFILE_NAME].trim());
+            reviewDto.setHelpfulnessNumerator(Integer.parseInt(parsedLine[NUMERATOR].trim()));
+            reviewDto.setHelpfulnessDenominator(Integer.parseInt(parsedLine[DENOMINATOR].trim()));
+            reviewDto.setScore(Integer.parseInt(parsedLine[SCORE].trim()));
+            reviewDto.setTime(Integer.parseInt(parsedLine[TIME].trim()));
+            reviewDto.setSummary(parsedLine[SUMMARY].trim());
+            reviewDto.setText(parsedLine[TEXT].trim());
             return reviewDto;
         } catch (IOException e) {
             throw new RuntimeException("Cannot parse the line " + line, e);
