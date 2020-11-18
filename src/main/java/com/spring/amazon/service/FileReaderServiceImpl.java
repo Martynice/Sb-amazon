@@ -1,6 +1,5 @@
-package com.spring.amazon.service.impl;
+package com.spring.amazon.service;
 
-import com.spring.amazon.service.FileReaderService;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
