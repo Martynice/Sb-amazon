@@ -1,10 +1,10 @@
 package com.spring.amazon.service;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.spring.amazon.dto.ReviewDto;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ReviewDtoParserTest {
     private static final String INPUT_TEXT = "1, p1, u1, user, 1, 1, 1, 1, summary, text";
@@ -27,6 +27,7 @@ public class ReviewDtoParserTest {
 
     @Test
     public void parseWrongTypeCsv() {
-        assertThrows(RuntimeException.class, () -> csvParser.parse(WRONG_TYPE_PARAMS + INPUT_TEXT.substring(2)));
+        assertThrows(RuntimeException.class, () -> csvParser.parse(
+                WRONG_TYPE_PARAMS + INPUT_TEXT.substring(2)));
     }
 }
