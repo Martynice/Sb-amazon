@@ -2,6 +2,9 @@ package com.spring.amazon.mapper;
 
 import com.spring.amazon.dto.ReviewDto;
 import com.spring.amazon.model.Review;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,14 +18,15 @@ public class ReviewMapperTest {
     public static void beforeClass() {
         reviewMapper = new ReviewMapper();
         reviewDtoOk = new ReviewDto();
-        reviewDtoOk.setId(1);
+        reviewDtoOk.setId(1L);
         reviewDtoOk.setProductId("B001E4KFG0");
         reviewDtoOk.setUserId("A3SGXH7AUHU8GW");
         reviewDtoOk.setProfileName("delmartian");
-        reviewDtoOk.setHelpfulnessNumerator(1);
-        reviewDtoOk.setHelpfulnessDenominator(1);
-        reviewDtoOk.setScore(5);
-        reviewDtoOk.setTime(1);
+        reviewDtoOk.setHelpfulnessNumerator(1L);
+        reviewDtoOk.setHelpfulnessDenominator(1L);
+        reviewDtoOk.setScore(5L);
+        reviewDtoOk.setTime(LocalDateTime.ofInstant(Instant.ofEpochSecond(1L),
+                ZoneId.systemDefault()));
         reviewDtoOk.setSummary("Good Quality Dog Food");
         reviewDtoOk.setText("I have bought several of the Vitality canned dog food products");
     }
@@ -30,10 +34,11 @@ public class ReviewMapperTest {
     @Test
     public void mapDtoOk() {
         Review expected = new Review();
-        expected.setHelpfulnessNumerator(1);
-        expected.setHelpfulnessDenominator(1);
-        expected.setScore(5);
-        expected.setTime(1);
+        expected.setHelpfulnessNumerator(1L);
+        expected.setHelpfulnessDenominator(1L);
+        expected.setScore(5L);
+        expected.setTime(LocalDateTime.ofInstant(Instant.ofEpochSecond(1),
+                ZoneId.systemDefault()));
         expected.setSummary("Good Quality Dog Food");
         expected.setText("I have bought several of the Vitality canned dog food products");
         Review actual = reviewMapper.mapToReview(reviewDtoOk);

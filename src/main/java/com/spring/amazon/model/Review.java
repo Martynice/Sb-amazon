@@ -1,5 +1,6 @@
 package com.spring.amazon.model;
 
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,16 +15,16 @@ import lombok.Data;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int externalId;
+    private Long id;
+    private Long externalId;
     @ManyToOne
     private User user;
     @ManyToOne
     private Product product;
-    private int helpfulnessNumerator;
-    private int helpfulnessDenominator;
-    private int score;
-    private int time;
+    private Long helpfulnessNumerator;
+    private Long helpfulnessDenominator;
+    private Long score;
+    private LocalDateTime time;
     private String summary;
     private String text;
 }

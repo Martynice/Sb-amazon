@@ -3,6 +3,9 @@ package com.spring.amazon.service;
 import com.opencsv.CSVParser;
 import com.spring.amazon.dto.ReviewDto;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,14 +27,15 @@ public class ReviewDtoParser implements CsvParser<ReviewDto> {
         ReviewDto reviewDto = new ReviewDto();
         try {
             String[] parsedLine = csvParser.parseLine(line);
-            reviewDto.setId(Integer.parseInt(parsedLine[ID].trim()));
+            reviewDto.setId(Long.parseLong(parsedLine[ID].trim()));
             reviewDto.setProductId(parsedLine[PRODUCT_ID].trim());
             reviewDto.setUserId(parsedLine[USER_ID].trim());
             reviewDto.setProfileName(parsedLine[PROFILE_NAME].trim());
-            reviewDto.setHelpfulnessNumerator(Integer.parseInt(parsedLine[NUMERATOR].trim()));
-            reviewDto.setHelpfulnessDenominator(Integer.parseInt(parsedLine[DENOMINATOR].trim()));
-            reviewDto.setScore(Integer.parseInt(parsedLine[SCORE].trim()));
-            reviewDto.setTime(Integer.parseInt(parsedLine[TIME].trim()));
+            reviewDto.setHelpfulnessNumerator(Long.parseLong(parsedLine[NUMERATOR].trim()));
+            reviewDto.setHelpfulnessDenominator(Long.parseLong(parsedLine[DENOMINATOR].trim()));
+            reviewDto.setScore(Long.parseLong(parsedLine[SCORE].trim()));
+            reviewDto.setTime(LocalDateTime.ofInstant(Instant.ofEpochSecond(
+                    Long.parseLong(parsedLine[SCORE].trim())), ZoneId.systemDefault()));
             reviewDto.setSummary(parsedLine[SUMMARY].trim());
             reviewDto.setText(parsedLine[TEXT].trim());
             return reviewDto;
