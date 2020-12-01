@@ -3,6 +3,9 @@ package com.spring.amazon.service;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.spring.amazon.dto.ReviewDto;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,8 +18,10 @@ public class ReviewDtoParserTest {
     @Test
     public void parseOk() {
         ReviewDto result = csvParser.parse(INPUT_TEXT);
-        ReviewDto expected = new ReviewDto(1, "p1", "u1", "user",
-                1, 1, 1, 1, "summary", "text");
+        ReviewDto expected = new ReviewDto(1L, "p1", "u1", "user",
+                1L, 1L, 1L,
+                LocalDateTime.ofInstant(Instant.ofEpochSecond(1),
+                ZoneId.systemDefault()), "summary", "text");
         Assert.assertEquals(expected, result);
     }
 

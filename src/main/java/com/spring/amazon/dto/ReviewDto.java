@@ -1,5 +1,6 @@
 package com.spring.amazon.dto;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,14 +9,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReviewDto {
-    private int id;
+    private Long id;
     private String productId;
     private String userId;
     private String profileName;
-    private int helpfulnessNumerator;
-    private int helpfulnessDenominator;
-    private int score;
-    private int time;
+    private Long helpfulnessNumerator;
+    private Long helpfulnessDenominator;
+    private Long score;
+    private LocalDateTime time;
     private String summary;
     private String text;
 }
