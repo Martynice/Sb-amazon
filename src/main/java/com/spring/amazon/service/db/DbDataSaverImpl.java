@@ -64,7 +64,12 @@ public class DbDataSaverImpl implements DbDataSaver<ReviewDto> {
     @Override
     public List<Review> saveReviews(List<ReviewDto> data) {
         List<Review> reviews = data.stream()
-                .map(reviewMapper::mapToReview)
+                .map(x -> {
+                    Review review = reviewMapper.mapToReview(x);
+                    review.setUser(userService.getByExternalId(x.getUserId()));
+                    review.setProduct(productService.getByExternalId(x.getProductId()));
+                    return review;
+                })
                 .collect(Collectors.toList());
         reviewService.saveAll(reviews);
         return reviews;

@@ -18,4 +18,9 @@ public class UserServiceImpl implements UserService {
     public void saveAll(List<User> users) {
         userRepository.saveAll(users);
     }
+
+    @Override
+    public User getByExternalId(String id) {
+        return userRepository.getByExternalId(id).get();
+    }
 }
